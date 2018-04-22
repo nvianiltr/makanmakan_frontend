@@ -111,7 +111,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>\r\n<!--<div class=\"footer\">-->\r\n<app-footer></app-footer>\r\n<!--</div>-->\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<app-navbar></app-navbar>\r\n<router-outlet></router-outlet>\r\n<!--<div class=\"footer\">-->\r\n<!--<app-footer></app-footer>-->\r\n<!--</div>-->\r\n"
 
 /***/ }),
 
@@ -2614,7 +2614,7 @@ var SearchComponent = /** @class */ (function () {
     };
     SearchComponent.prototype.searchRecipe = function () {
         var _this = this;
-        this.name = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+        this.name = decodeURI(window.location.href.substr(window.location.href.lastIndexOf('/') + 1));
         this.recipeService.searchRecipe(this.name)
             .subscribe(function (recipes) {
             if (recipes.length != 0) {
@@ -2685,13 +2685,13 @@ var SignupComponent = /** @class */ (function () {
         this.res = {};
     }
     SignupComponent.prototype.ngOnInit = function () {
-        this.element = document.getElementById("saveButton");
+        this.element = document.getElementById('saveButton');
         this.signup = new __WEBPACK_IMPORTED_MODULE_1__models_Signup__["a" /* Signup */]();
         this.isError = false;
     };
     SignupComponent.prototype.register = function () {
         var _this = this;
-        this.element.classList.add("running");
+        this.element.classList.add('running');
         this.userService.register(this.signup).subscribe(function (res) {
             _this.res = res;
             _this.isError = false;
@@ -2702,7 +2702,7 @@ var SignupComponent = /** @class */ (function () {
             _this.res = err;
             _this.isError = true;
             _this.error = _this.res.error.message;
-            _this.element.classList.remove("running");
+            _this.element.classList.remove('running');
             // console.log(this.message);
             // console.error(err); alert(this.res.error.message);
         });
